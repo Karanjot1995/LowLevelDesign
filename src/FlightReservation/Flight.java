@@ -2,12 +2,12 @@ package FlightReservation;
 
 import java.util.*;
 
-public class Flight {
-    private String flightNumber;
-    private String origin;
-    private String destination;
-    private Map<String, Seat> seats;
-    private List<String> availableSeats;
+abstract class Flight {
+    protected String flightNumber;
+    protected String origin;
+    protected String destination;
+    protected Map<String, Seat> seats;
+    protected List<String> availableSeats;
 
     public Flight(String flightNumber,String origin, String destination){
         this.flightNumber = flightNumber;
@@ -50,10 +50,6 @@ public class Flight {
         return availableSeats;
     }
 
+    public abstract String getFlightType();
 
-//
-    @Override
-    public String toString() {
-        return "Flight " + flightNumber + " from " + origin + " to " + destination + ". Available seats: " + availableSeats;
-    }
 }

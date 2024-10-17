@@ -1,6 +1,6 @@
 package FlightReservation;
 
-public class Main {
+public class FlightReservationSystemDemo {
     public static void main(String[] args) {
         FlightReservationSystem system = FlightReservationSystem.getInstance();
 
@@ -9,29 +9,42 @@ public class Main {
         system.addPassenger(p1);
 
         // Adding flights
-        Flight flight = new Flight("AA101", "Dallas", "New York");
-        flight.addSeat(new Seat("S001", SeatType.ECONOMY, 100.00));
-        flight.addSeat(new Seat("S002", SeatType.ECONOMY, 100.00));
-        flight.addSeat(new Seat("S003", SeatType.ECONOMY, 100.00));
-        flight.addSeat(new Seat("S004", SeatType.ECONOMY, 100.00));
+        Flight flight = FlightFactory.createFlight("domestic", "AA101", "Dallas", "New York");
+//        Flight flight = new Flight("AA101", "Dallas", "New York");
+        System.out.println(flight.getFlightType());
+        Flight flight2 = FlightFactory.createFlight("international", "AA102", "New York", "Chicago");
+        System.out.println(flight2.getFlightType());
+
+        for(int i = 0;i<5;i++){
+            String econId = "S00" + Integer.toString(i+1);
+            flight.addSeat(new Seat(econId, SeatType.ECONOMY,100.00));
+        }
+        for(int i = 0;i<5;i++){
+            String busId = "B00" + Integer.toString(i+1);
+            flight.addSeat(new Seat(busId, SeatType.BUSINESS,200.00));
+        }
 
 
-        Flight flight2 = new Flight("AA102", "New York", "Chicago");
-        flight2.addSeat(new Seat("S001", SeatType.ECONOMY, 100.00));
-        flight2.addSeat(new Seat("S002", SeatType.ECONOMY, 100.00));
-        flight2.addSeat(new Seat("S003", SeatType.ECONOMY, 100.00));
-        flight2.addSeat(new Seat("S004", SeatType.ECONOMY, 100.00));
+
+//        Flight flight2 = new Flight("AA102", "New York", "Chicago");
+        for(int i = 0;i<5;i++){
+            String econId = "S00" + Integer.toString(i+1);
+            flight2.addSeat(new Seat(econId, SeatType.ECONOMY,100.00));
+        }
+
 
         system.addFlight(flight);
         system.addFlight(flight2);
 
         system.bookSeat(p1, flight, "S001");
+        system.bookSeat(p1, flight, "S004");
+
         system.bookSeat(p1, flight2, "S003");
 
         system.displayAvailableSeats("AA101");
         system.displayAvailableSeats("AA102");
 
-        System.out.println(system.getFlight("AA101"));
+//        System.out.println(system.getFlight("AA101"));
 
 
 //        FlightReservationSystem system = FlightReservationSystem.getInstance();

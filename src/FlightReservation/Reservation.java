@@ -31,7 +31,7 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "Passenger:"+ passenger.getId() + ", Flight: " + flight.getFlightNumber() + ", Seat: " + seat.getId() +  ", Seat Status: " + seat.getStatus();
+        return "Reservation - Passenger:"+ passenger.getId() + ", Flight: " + flight.getFlightNumber() + ", Seat: " + seat.getId() +  ", Seat Status: " + seat.getStatus();
     }
 
 

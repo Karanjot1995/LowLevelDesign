@@ -8,9 +8,9 @@ class Elevator{
     private TreeSet<Integer> requests;
     private ElevatorState state;
 
-    public Elevator(int id){
+    public Elevator(int id, int currentFloor){
         this.id = id;
-        this.currentFloor = 0;
+        this.currentFloor = currentFloor;
         this.state = ElevatorState.IDLE;
         this.requests = new TreeSet<Integer>();
     }
@@ -18,6 +18,7 @@ class Elevator{
     public void addRequest(int floor){
         requests.add(floor);
         updateState();
+        System.out.println("Requests" + requests.toString());
     }
 
     public void move(){
@@ -40,7 +41,7 @@ class Elevator{
             state = ElevatorState.IDLE;
         }else if(requests.first() > currentFloor){
             state = ElevatorState.MOVING_UP;
-        }else if(requests.first() > currentFloor){
+        }else if(requests.first() < currentFloor){
             state = ElevatorState.MOVING_DOWN;
         }
     }
